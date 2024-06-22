@@ -45,6 +45,8 @@ public class TopicService {
             throw new IllegalArgumentException(  "Topic not found: " + id);
         }
         TopicEntity topicEntity = topic.get();
+        topicEntity.setViews(topicEntity.getViews() + 1);
+        repository.save(topicEntity);
         return converter.toDto(topicEntity);
     }
 
@@ -55,7 +57,7 @@ public class TopicService {
     }
 
     public List<TopicDto> getAllTopics(int page, int pageSize) {
-        Page<TopicEntity> all = pagingRepository.findAll(PageRequest.of(page, pageSize));
+        Page<TopicEntity> all = pagingRepository.findAll(PageRequest.of(page, pageSize, Sort.by(Sort.Direction.DESC, "id")));
         return all.getContent().stream().map(converter::toDto).collect(Collectors.toList());
     }
 

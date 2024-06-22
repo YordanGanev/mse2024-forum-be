@@ -12,11 +12,10 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TopicDto {
-
     private long id;
     private String title;
     private String username;
     private Date created;
     private Date modified;
-
+    private long views;
 }

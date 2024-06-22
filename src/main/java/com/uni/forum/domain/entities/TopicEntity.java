@@ -25,4 +25,6 @@ public class TopicEntity extends BaseEntity {
   @JoinColumn
   @ManyToOne
   private UserEntity user;
+
+  private long views;
 }
