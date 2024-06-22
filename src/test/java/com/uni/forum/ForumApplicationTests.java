@@ -2,6 +2,7 @@ package com.uni.forum;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uni.forum.domain.dtos.UserDto;
+import org.junit.Assert;
 import org.junit.ClassRule;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,11 @@ class ForumApplicationTests {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@Test
+	void newTest(final Object obj) {
+		Assert.assertTrue(true);
 	}
 
 }
