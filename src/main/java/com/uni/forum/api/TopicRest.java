@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/topics")
+@CrossOrigin(origins = {"http://localhost:5173","http://localhost:4173", "http://localhost:8080"})
 public class TopicRest {
   private final Logger LOGGER = LoggerFactory.getLogger(UserRest.class);
 

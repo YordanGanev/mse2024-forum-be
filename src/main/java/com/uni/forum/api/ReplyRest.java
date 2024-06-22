@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/replies")
+@CrossOrigin(origins = {"http://localhost:5173","http://localhost:4173" , "http://localhost:8080"})
 public class ReplyRest {
   private final Logger LOGGER = LoggerFactory.getLogger(UserRest.class);
 

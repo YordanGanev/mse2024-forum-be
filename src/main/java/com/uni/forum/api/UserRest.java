@@ -17,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
+@CrossOrigin(origins = {"http://localhost:5173","http://localhost:4173", "http://localhost:8080"})
 public class UserRest {
 
   private final Logger LOGGER = LoggerFactory.getLogger(UserRest.class);
@@ -54,7 +55,14 @@ public class UserRest {
   public ResponseEntity<List<UserDto>> getAllUsers(
       @RequestParam(value = "page", required = false) Integer page,
       @RequestParam(value = "pageSize", required = false) Integer pageSize) {
-    // TODO: add check for NULL page and pageSize
+    if (page == null) {
+      page = 0;
+    }
+
+    if (pageSize == null) {
+      pageSize = 10; // Default return 10 results
+    }
+    
     return ResponseEntity.ok(userService.getAllUsers(page, pageSize));
   }
 
