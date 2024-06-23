@@ -24,7 +24,6 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class TopicService {
-
     private final TopicRepository repository;
     private final TopicConverter converter;
     private final UserRepository userRepository;
@@ -42,10 +41,11 @@ public class TopicService {
         // TODO: don't use join, just query topic
         Optional<TopicEntity> topic = repository.findById(id);
         if (topic.isEmpty()) {
-            throw new IllegalArgumentException(  "Topic not found: " + id);
+            throw new IllegalArgumentException("Topic not found: " + id);
         }
         TopicEntity topicEntity = topic.get();
         topicEntity.setViews(topicEntity.getViews() + 1);
+        topicEntity.setReplyCount(topicEntity.getReplyCount());
         repository.save(topicEntity);
         return converter.toDto(topicEntity);
     }
@@ -58,6 +58,11 @@ public class TopicService {
 
     public List<TopicDto> getAllTopics(int page, int pageSize) {
         Page<TopicEntity> all = pagingRepository.findAll(PageRequest.of(page, pageSize, Sort.by(Sort.Direction.DESC, "id")));
+
+        for (TopicEntity topic : all) {
+            topic.setReplyCount(topic.getReplyCount());
+        }
+
         return all.getContent().stream().map(converter::toDto).collect(Collectors.toList());
     }
 

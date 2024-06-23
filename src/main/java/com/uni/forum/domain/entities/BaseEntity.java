@@ -18,12 +18,12 @@ public class BaseEntity {
   @Id @GeneratedValue private long id;
 
   @Column
-  @Temporal(TemporalType.DATE)
+  @Temporal(TemporalType.TIMESTAMP)
   @CreationTimestamp
   private Date created;
 
   @Column
-  @Temporal(TemporalType.DATE)
+  @Temporal(TemporalType.TIMESTAMP)
   @UpdateTimestamp
   private Date modified;
 }

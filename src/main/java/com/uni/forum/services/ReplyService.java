@@ -45,13 +45,13 @@ public class ReplyService {
 
     public List<ReplyDto> getAllRepliesByTopic(Long id, Integer page, Integer pageSize) {
         TopicEntity topic = getTopicOrThrowException(id);
-        PageRequest pageRequest = PageRequest.of(page, pageSize, Sort.by("created").descending());
+        PageRequest pageRequest = PageRequest.of(page, pageSize, Sort.by("created").ascending());
         List<ReplyEntity> allByTopic = pagingRepository.findAllByTopic(topic, pageRequest);
         return allByTopic.stream().map(converter::toDto).collect(Collectors.toList());
     }
 
     public List<ReplyDto> getAllReplies(Integer page, Integer pageSize) {
-        PageRequest pageRequest = PageRequest.of(page, pageSize, Sort.by("created").descending());
+        PageRequest pageRequest = PageRequest.of(page, pageSize, Sort.by("created").ascending());
         Page<ReplyEntity> all = pagingRepository.findAll(pageRequest);
         return all.getContent().stream().map(converter::toDto).collect(Collectors.toList());
     }

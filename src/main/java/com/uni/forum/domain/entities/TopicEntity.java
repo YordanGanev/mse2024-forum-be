@@ -27,4 +27,11 @@ public class TopicEntity extends BaseEntity {
   private UserEntity user;
 
   private long views;
+
+  @Transient
+  private long replyCount;
+
+  public long getReplyCount() {
+    return replies != null ? replies.size() : 0;
+  }
 }

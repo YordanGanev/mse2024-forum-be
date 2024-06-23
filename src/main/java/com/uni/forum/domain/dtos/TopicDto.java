@@ -18,4 +18,5 @@ public class TopicDto {
     private Date created;
     private Date modified;
     private long views;
+    private long replyCount;
 }
