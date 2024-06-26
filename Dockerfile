@@ -10,5 +10,5 @@ RUN mvn -f pom.xml clean package
 FROM sapmachine:21
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8090
- ENV spring.datasource.url=jdbc:postgresql://host.docker.internal:5433/postgres?createDatabaseIfNotExist=true
+ENV spring.datasource.url=jdbc:postgresql://host.docker.internal:5433/postgres?createDatabaseIfNotExist=true
 ENTRYPOINT ["java", "-jar", "/app.jar"]
