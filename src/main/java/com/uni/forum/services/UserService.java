@@ -49,6 +49,19 @@ public class UserService {
     UserEntity updatedEntity = converter.toEntity(user);
     updatedEntity.setId(userEntity.getId());
     updatedEntity.setCreated(userEntity.getCreated());
+    if (updatedEntity.getUsername() == null) {
+      updatedEntity.setUsername(userEntity.getUsername());
+    }
+    if (updatedEntity.getName() == null) {
+      updatedEntity.setName(userEntity.getName());
+    }
+    if (updatedEntity.getPassword() == null) {
+      updatedEntity.setPassword(userEntity.getPassword());
+    }
+    if (updatedEntity.getRole() == null) {
+      updatedEntity.setRole(userEntity.getRole());
+    }
+
     UserEntity save = userRepository.save(updatedEntity);
     return converter.toDto(save);
   }
